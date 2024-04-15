@@ -335,11 +335,11 @@ exports.externalDeleteLinkedinChannels = async (req, res) => {
 exports.externalDeleteLinkedinChannel = async (req, res) => {
     try {
         const user = await UserExternalWallet.findOne({ _id: req.user._id })
-        let { organization, linkedinId } = req.params
-        let linkedinProfile = await LinkedinProfile.findOne(
-            { userId: user.UserId, linkedinId },
-            { pages: 1 }
-        ).lean()
+        let { linkedinId, organization } = req.params
+        let linkedinProfile = await LinkedinProfile.findOne({
+            userId: user.UserId,
+            linkedinId,
+        }).lean()
         if (!linkedinProfile) return makeResponseError(res, 401, 'unauthorized')
         if (linkedinProfile.pages.length === 1) {
             await LinkedinProfile.deleteOne({
@@ -390,7 +390,7 @@ exports.externalDeleteTwitterChannel = async (req, res) => {
         if (twitterProfile?.UserId !== user.UserId)
             return makeResponseError(res, 401, 'unauthorized')
         else {
-            await TwitterProfile.deleteOne({ UserId: user.UserId })
+            await TwitterProfile.deleteOne({ _id: twitterProfile._id })
             return makeResponseData(res, 200, 'deleted successfully')
         }
     } catch (err) {
