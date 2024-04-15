@@ -2424,7 +2424,7 @@ exports.campaignAllowance = async (req, res) => {
 
 exports.artheraApproval = async (req, res) => {
     try {
-        let tokenAddress = req.body.tokenAddress
+        let tokenAddress = process.env.ARTHERA_MOCK_TOKEN
         let campaignAddress = req.body.campaignAddress
         let account = await getAccount(req, res) // FIXED
         let allowance = await artheraApprove(
@@ -2451,7 +2451,7 @@ exports.artheraAllow = async (req, res) => {
     try {
         let campaignAddress = req.body.campaignAddress
         let amount = req.body.amount
-        let polygonToken = req.body.tokenAddress
+        let polygonToken = process.env.ARTHERA_MOCK_TOKEN
         var cred = await unlockArthera(req, res)
         if (!cred) return
 
