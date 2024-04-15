@@ -390,7 +390,7 @@ exports.externalDeleteTwitterChannel = async (req, res) => {
         if (twitterProfile?.UserId !== user.UserId)
             return makeResponseError(res, 401, 'unauthorized')
         else {
-            await TwitterProfile.deleteOne({ UserId: user.UserId })
+            await TwitterProfile.deleteOne({ _id: twitterProfile._id })
             return makeResponseData(res, 200, 'deleted successfully')
         }
     } catch (err) {
