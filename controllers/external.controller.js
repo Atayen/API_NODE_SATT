@@ -68,6 +68,7 @@ const {
     getLinkedinLinkInfo,
     influencersLinks,
     getTransactionAmountExternal,
+    updateBounty,
 } = require('../web3/campaigns')
 
 const { create } = require('ipfs-http-client')
@@ -1150,12 +1151,12 @@ module.exports.externalAnswer = async (req, res) => {
             }
 
             let bountie = campaignData.bounties.find(
-                (b) => b.oracle == findBountyOracle(prom.typeSN)
+                (b) => b.oracle == findBountyOracle(link.typeSN)
             )
             let maxBountieFollowers =
                 bountie.categories[bountie.categories.length - 1].maxFollowers
             var evts = await updateBounty(
-                idProm,
+                req.body.idProm,
                 credentials,
                 tronWeb,
                 campaignData.token.type
@@ -1166,15 +1167,15 @@ module.exports.externalAnswer = async (req, res) => {
             }
 
             await Request.updateOne(
-                { id: idProm },
+                { id: req.body.idProm },
                 {
                     $set: {
                         nbAbos: stats,
                         isBounty: true,
                         new: false,
                         date: Date.now(),
-                        typeSN: prom.typeSN,
-                        idPost: prom.idPost,
+                        typeSN: link.typeSN,
+                        idPost: link.idPost,
                         idUser: externalWallet.idUser,
                     },
                 },
@@ -1189,7 +1190,7 @@ module.exports.externalAnswer = async (req, res) => {
                     campaignContract:
                         (!!tronWeb && TronConstant.campaign.address) ||
                         ctr.options.address,
-                    idProm: idProm,
+                    idProm: req.body.idProm,
                     nbAbos: stats,
                 })
             } finally {
@@ -1254,14 +1255,6 @@ module.exports.externalAnswer = async (req, res) => {
                 stats?.shares != prevstat[0]?.shares ||
                 stats?.views != prevstat[0]?.views
             ) {
-                requests = await Request.find({
-                    new: true,
-                    isBounty: false,
-                    typeSN: link.typeSN,
-                    idPost: link.idPost,
-                    idUser: externalWallet.UserId,
-                })
-                var tronWeb
                 var idRequest = req.body.tx[0].topics[1]
 
                 // var idRequest = (!!tronWeb && evt.result.idRequest) || evt.raw.topics[1]

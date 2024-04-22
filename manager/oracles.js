@@ -9,6 +9,7 @@ const {
     web3PolygonUrl,
     CampaignConstants,
     OracleConstants,
+    web3UrlArthera,
 } = require('../conf/const')
 const child_process = require('child_process')
 const {
@@ -1514,7 +1515,12 @@ exports.answerCallExternal = async (opts) => {
         campaignWallet = JSON.parse(campaignKeystore)
 
         const web3 = new Web3(
-            new Web3.providers.HttpProvider(web3UrlBep20, options)
+            new Web3.providers.HttpProvider(
+                opts.credentials.network.toUpperCase() === 'ARTHERA'
+                    ? web3UrlArthera
+                    : web3UrlBep20,
+                options
+            )
         )
 
         // Decrypt the campaign wallet using the owner's password
@@ -1549,7 +1555,7 @@ exports.answerCallExternal = async (opts) => {
             )
             .send({
                 from: process.env.CAMPAIGN_OWNER,
-                gas: 500000,
+                gas: 800000,
                 gasPrice: gasPrice,
             })
             .once('transactionHash', function (hash) {})
