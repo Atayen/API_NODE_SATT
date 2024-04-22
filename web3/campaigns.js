@@ -38,6 +38,7 @@ const networks = [
     { name: 'BEP20', providerUrl: process.env.WEB3_URL_BEP20 },
     { name: 'POLYGON', providerUrl: process.env.WEB3_URL_POLYGON },
     { name: 'BTTC', providerUrl: process.env.WEB3_URL_BTT },
+    { name: 'ARTHERA', providerUrl: process.env.WEB3_URL_ARTHERA },
 ]
 
 const { getHttpProvider, networkProviders } = require('../web3/web3-connection')
