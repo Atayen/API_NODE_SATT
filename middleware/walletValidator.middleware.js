@@ -84,6 +84,7 @@ const schemas = {
             'polygon',
             'tron',
             'bttc',
+            'arthera',
         ]),
     }),
 
