@@ -512,7 +512,10 @@ exports.createPerformanceCampaign = async (
                 : await contract.getGasPrice()
 
         /** GET GAS LIMIT FROM .env */
-        const gas = process.env.GAS_LIMIT
+        const gas =
+            network === 'ARTHERA'
+                ? process.env.GAS_LIMIT_ARTHERA
+                : process.env.GAS_LIMIT
 
         /**   CALL METHOD CREATE PRICE FUND ALL FROM CONTRACT*/
         const transactionReceipt = await contract.methods
@@ -637,7 +640,10 @@ exports.createBountiesCampaign = async (
             ? await credentials.Web3ARTHERA.eth.getGasPrice()
             : await ctr.getGasPrice()
     /** GET GAS LIMIT FROM .env */
-    var gas = process.env.GAS_LIMIT
+    var gas =
+        network === 'ARTHERA'
+            ? process.env.GAS_LIMIT_ARTHERA
+            : process.env.GAS_LIMIT
 
     try {
         var receipt = await ctr.methods
