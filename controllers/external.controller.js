@@ -13,7 +13,7 @@ const {
     formatTokenBalance,
     getNativeBalance,
 } = require('../web3/wallets')
-
+const { notificationManager } = require('./../manager/accounts')
 const { generateAccessTokenExternal } = require('../helpers/utils')
 const { Constants, TronConstant } = require('../conf/const')
 const {
