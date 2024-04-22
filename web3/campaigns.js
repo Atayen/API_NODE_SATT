@@ -101,17 +101,16 @@ exports.unlockArthera = async (req, res) => {
             [account.walletV2?.keystore],
             pass
         )
+
         return {
             address: '0x' + account.walletV2?.keystore.address,
             Web3ARTHERA,
         }
     } catch (err) {
-        if (!!res && res.length > 0) {
-            res.status(500).send({
-                code: 500,
-                error: err.message ? err.message : err.error,
-            })
-        }
+        res.status(500).send({
+            code: 500,
+            error: err.message ? err.message : err.error,
+        })
     }
 }
 //unlock networks
@@ -512,7 +511,10 @@ exports.createPerformanceCampaign = async (
                 : await contract.getGasPrice()
 
         /** GET GAS LIMIT FROM .env */
-        const gas = process.env.GAS_LIMIT
+        const gas =
+            network === 'ARTHERA'
+                ? process.env.GAS_LIMIT_ARTHERA
+                : process.env.GAS_LIMIT
 
         /**   CALL METHOD CREATE PRICE FUND ALL FROM CONTRACT*/
         const transactionReceipt = await contract.methods
@@ -637,7 +639,10 @@ exports.createBountiesCampaign = async (
             ? await credentials.Web3ARTHERA.eth.getGasPrice()
             : await ctr.getGasPrice()
     /** GET GAS LIMIT FROM .env */
-    var gas = process.env.GAS_LIMIT
+    var gas =
+        network === 'ARTHERA'
+            ? process.env.GAS_LIMIT_ARTHERA
+            : process.env.GAS_LIMIT
 
     try {
         var receipt = await ctr.methods
