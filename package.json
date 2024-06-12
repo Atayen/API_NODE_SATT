@@ -22,7 +22,7 @@
         "apollo-cache-inmemory": "^1.6.6",
         "apollo-client": "^2.6.10",
         "apollo-link-http": "^1.5.17",
-        "axios": "^0.27.2",
+        "axios": "^1.6.0",
         "bcrypt": "^5.0.1",
         "big.js": "^6.0.3",
         "bip32": "^4.0.0",
