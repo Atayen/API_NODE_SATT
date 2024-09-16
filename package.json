@@ -121,7 +121,7 @@
         "sharp": "^0.32.6",
         "sinon-chai": "^3.7.0",
         "socket.io": "^4.4.1",
-        "solc": "^0.5.0",
+        "solc": "^0.8.20",
         "speakeasy": "^2.0.0",
         "supervisor": "^0.12.0",
         "swagger-jsdoc": "^5.0.1",
