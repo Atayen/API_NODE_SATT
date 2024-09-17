@@ -86,7 +86,7 @@
         "mocha": "^10.1.0",
         "moment": "^2.22.2",
         "mongo-sanitize": "^1.1.0",
-        "mongodb": "^4.16.0",
+        "mongodb": "^4.17.0",
         "mongoose": "^5.13.17",
         "mongoose-auto-increment": "^5.0.1",
         "morgan": "^1.10.0",
