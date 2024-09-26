@@ -61,7 +61,7 @@
         "from-exponential": "^1.1.1",
         "geoip-lite": "^1.4.2",
         "google-auth-library": "^7.6.2",
-        "graphql": "^16.0.1",
+        "graphql": "^16.8.1",
         "gridfs-stream": "^1.1.1",
         "handlebars": "^4.7.7",
         "hasha": "^5.2.2",
