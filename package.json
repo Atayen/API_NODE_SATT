@@ -137,7 +137,7 @@
         "validator": ">=13.7.0",
         "web3": "^1.9.0",
         "web3-eth-abi": "^1.8.1",
-        "web3-eth-contract": "^1.8.1",
+        "web3-eth-contract": "^1.10.0",
         "wif": "^2.0.6",
         "winston": "^3.3.3",
         "ws": "^7.4.6",
